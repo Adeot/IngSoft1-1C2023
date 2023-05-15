@@ -40517,3 +40517,150 @@ PASSED!
 
 !testRun: #MarsRoverTest #test21MarsRoverFollowsCommandsOnlyUntilLastValidSignal stamp: 'af 5/15/2023 13:59:50'!
 PASSED!
+
+----STARTUP---- (15 May 2023 17:08:57) as C:\Users\fridm\OneDrive\Escritorio\cuisUniversity\windows64\CuisUniversity-5706.image!
+
+
+!testRun: #MarsRoverTest #test00MarsRoverIsCorrectlyInitializedInAPosition stamp: 'af 5/15/2023 17:09:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01MarsRoverIsCorrectlyInitializedInOrientation stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverMovesFowardCorrectlyWhenFacingNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesBackwardsCorrectlyWhenFacingNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverFacesEastWhenRotatingRightOneTimeFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverFacesSouthWhenRotatingRightTwoTimesFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverFacesWestWhenRotatingRightThreeTimesFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverFacesNorthWhenRotatingRightFourTimesFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverFacesWestWhenRotatingLeftOneTimeFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverFacesSouthWhenRotatingLeftTwoTimesFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverFacesEastWhenRotatingLeftThreeTimesFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverFacesNorthWhenRotatingLeftFourTimesFromNorth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverMovesFowardCorrectlyWhenFacingEast stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverMovesBackwardsCorrectlyWhenFacingEast stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverMovesFowardCorrectlyWhenFacingWest stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverMovesBackwardsCorrectlyWhenFacingWest stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverMovesFowardCorrectlyWhenFacingSouth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverMovesBackwardsCorrectlyWhenFacingSouth stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverDoesNothingWhenReceivesBlankCommand stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverDoesNothingWhenReceivesInvalidCommand stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverMovesFowardRotatesAndContinuesCommandWhenAllAreValid stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21MarsRoverFollowsCommandsOnlyUntilLastValidSignal stamp: 'af 5/15/2023 17:09:08'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'af 5/15/2023 17:22:11'!
+test000MarsRoverStaysTheSameWithEmptyCommand
+	self assertAfter: marsRoverCuriosity receives: '' thePositionEquals: initialPosition andTheOrientationEquals: initialOrientation .
+	"self assert: marsRoverCuriosity position equals: initialPosition ."! !
+
+!testRun: #MarsRoverTest #test000MarsRoverStaysTheSameWithEmptyCommand stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test00MarsRoverIsCorrectlyInitializedInAPosition stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01MarsRoverIsCorrectlyInitializedInOrientation stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02MarsRoverMovesFowardCorrectlyWhenFacingNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03MarsRoverMovesBackwardsCorrectlyWhenFacingNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04MarsRoverFacesEastWhenRotatingRightOneTimeFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05MarsRoverFacesSouthWhenRotatingRightTwoTimesFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06MarsRoverFacesWestWhenRotatingRightThreeTimesFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07MarsRoverFacesNorthWhenRotatingRightFourTimesFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08MarsRoverFacesWestWhenRotatingLeftOneTimeFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09MarsRoverFacesSouthWhenRotatingLeftTwoTimesFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10MarsRoverFacesEastWhenRotatingLeftThreeTimesFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11MarsRoverFacesNorthWhenRotatingLeftFourTimesFromNorth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12MarsRoverMovesFowardCorrectlyWhenFacingEast stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13MarsRoverMovesBackwardsCorrectlyWhenFacingEast stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14MarsRoverMovesFowardCorrectlyWhenFacingWest stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15MarsRoverMovesBackwardsCorrectlyWhenFacingWest stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16MarsRoverMovesFowardCorrectlyWhenFacingSouth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17MarsRoverMovesBackwardsCorrectlyWhenFacingSouth stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test18MarsRoverDoesNothingWhenReceivesBlankCommand stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test19MarsRoverDoesNothingWhenReceivesInvalidCommand stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test20MarsRoverMovesFowardRotatesAndContinuesCommandWhenAllAreValid stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test21MarsRoverFollowsCommandsOnlyUntilLastValidSignal stamp: 'af 5/15/2023 17:22:14'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'af 5/15/2023 17:22:26' prior: 50666588!
+test000MarsRoverStaysTheSameWithEmptyCommand
+	self assertAfter: marsRoverCuriosity receives: '' thePositionEquals: initialPosition andTheOrientationEquals: initialOrientation .! !
+
+----SNAPSHOT----(15 May 2023 17:23:36) CuisUniversity-5706.image priorSource: 10706105!

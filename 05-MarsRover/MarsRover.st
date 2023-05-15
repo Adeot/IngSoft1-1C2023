@@ -52,6 +52,10 @@ assertPositionOf: aMarsRover afterReceiving: someSignals equals: anExpectedPosit
 	self assert: (aMarsRover position) equals: anExpectedPosition.! !
 
 
+!MarsRoverTest methodsFor: 'tests' stamp: 'af 5/15/2023 17:22:26'!
+test000MarsRoverStaysTheSameWithEmptyCommand
+	self assertAfter: marsRoverCuriosity receives: '' thePositionEquals: initialPosition andTheOrientationEquals: initialOrientation .! !
+
 !MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 20:43:47'!
 test00MarsRoverIsCorrectlyInitializedInAPosition
 
@@ -242,7 +246,7 @@ newWithSignals: aStringOfSignals
 
 !classDefinition: #MarsRover category: 'MarsRover'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position orientation'
+	instanceVariableNames: 'posicion orientacion'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover'!
@@ -267,69 +271,69 @@ recieveCommand: aCommand
 	^self followCommand: (aCommand signals).! !
 
 
-!MarsRover methodsFor: 'moving' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'moving' stamp: 'af 5/15/2023 13:50:44'!
 moveBackwards
-	^position  := orientation moveBackwardsMarsRover: self.! !
+	^posicion  := orientacion moveBackwardsMarsRover: self.! !
 
-!MarsRover methodsFor: 'moving' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'moving' stamp: 'af 5/15/2023 13:51:00'!
 moveFoward
-	^position := orientation moveFowardMarsRover: self.! !
+	^posicion := orientacion moveFowardMarsRover: self.! !
 
 
-!MarsRover methodsFor: 'initializing' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'initializing' stamp: 'af 5/12/2023 00:04:55'!
 initializeWith: aPosition andOrientation: anOrientation.
-	position  := aPosition.
-	orientation  := anOrientation.! !
+	posicion  := aPosition.
+	orientacion  := anOrientation.! !
 
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:51:12'!
 rotate90DegreesLeft
-	orientation rotate90DegreesLeftMarsRover: self.! !
+	orientacion rotate90DegreesLeftMarsRover: self.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:47:28'!
 rotate90DegreesLeftFromEast
-	orientation := North new.! !
+	orientacion := North new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:49:31'!
 rotate90DegreesLeftFromNorth
-	orientation := West new.! !
+	orientacion := West new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:48:31'!
 rotate90DegreesLeftFromSouth
-	orientation := East new.! !
+	orientacion := East new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:47:53'!
 rotate90DegreesLeftFromWest
-	orientation := South new.! !
+	orientacion := South new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:51:53'!
 rotate90DegreesRight
-	orientation rotate90DegreesRightMarsRover: self.! !
+	orientacion rotate90DegreesRightMarsRover: self.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:48:56'!
 rotate90DegreesRightFromEast
-	orientation := South new.! !
+	orientacion := South new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:49:41'!
 rotate90DegreesRightFromNorth
-	orientation := East new.! !
+	orientacion := East new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:50:01'!
 rotate90DegreesRightFromSouth
-	orientation := West new.! !
+	orientacion := West new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:50:28'!
 rotate90DegreesRightFromWest
-	orientation := North new.! !
+	orientacion := North new.! !
 
 
-!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/15/2023 13:59:46'!
+!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/12/2023 15:03:06'!
 orientation
-	^orientation .! !
+	^orientacion .! !
 
-!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/15/2023 13:58:59'!
+!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/12/2023 15:16:22'!
 position
-	^position .! !
+	^posicion .! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
