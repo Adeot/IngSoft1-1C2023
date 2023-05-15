@@ -20,7 +20,7 @@ setUp
 	! !
 
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 22:20:54'!
+!MarsRoverTest methodsFor: 'assertions' stamp: 'ado 5/14/2023 22:20:54'!
 assertAfter: aMarsRover receives: someSignals thePositionEquals: anExpectedPosition andTheOrientationEquals: anExpectedOrientation
 
 	| commands |
@@ -31,17 +31,17 @@ assertAfter: aMarsRover receives: someSignals thePositionEquals: anExpectedPosit
 	self assert: (aMarsRover position) equals: anExpectedPosition.
 	self assert: (aMarsRover orientation) equals: anExpectedOrientation.! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 22:52:24'!
-assertOrientationOf: aMarsRover afterReceiving: someSignals equals: anOrientation
+!MarsRoverTest methodsFor: 'assertions' stamp: 'af 5/15/2023 12:55:37'!
+assertOrientationOf: aMarsRover afterReceiving: someSignals equals: anExpectedOrientation
 	
 	| commands |
 	
 	commands := Command newWithSignals: someSignals.	
-	marsRoverCuriosity recieveCommand: commands.	
+	aMarsRover recieveCommand: commands.	
 	
-	self assert: anOrientation equals: (marsRoverCuriosity orientation).! !
+	self assert: anExpectedOrientation equals: (aMarsRover orientation).! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 22:52:28'!
+!MarsRoverTest methodsFor: 'assertions' stamp: 'ado 5/14/2023 22:52:28'!
 assertPositionOf: aMarsRover afterReceiving: someSignals equals: anExpectedPosition
 
 	| commands |
@@ -50,6 +50,7 @@ assertPositionOf: aMarsRover afterReceiving: someSignals equals: anExpectedPosit
 	aMarsRover recieveCommand: commands.
 
 	self assert: (aMarsRover position) equals: anExpectedPosition.! !
+
 
 !MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 20:43:47'!
 test00MarsRoverIsCorrectlyInitializedInAPosition
@@ -178,10 +179,15 @@ test18MarsRoverDoesNothingWhenReceivesBlankCommand
 
 	self assertAfter: marsRoverCuriosity receives: '' thePositionEquals: initialPosition andTheOrientationEquals: initialOrientation.! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 22:58:55'!
-test19MarsRoverDoesNothingWhenReceivesInvalidCommand
-	
-	self assertAfter: marsRoverCuriosity receives: 'x' thePositionEquals: initialPosition andTheOrientationEquals: initialOrientation.! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'af 5/15/2023 13:39:04'!
+test19MarsRoverDoesNothingWhenReceivesInvalidCommand	| commands |
+	commands := Command newWithSignals: 'x'.
+	self 
+		should: [ marsRoverCuriosity recieveCommand: commands] 
+		raise: Error 
+		withExceptionDo: [ :error | 
+			self assert:  (MarsRover invalidSignalMessage)   equals: (error messageText) .
+			self assert: initialOrientation equals: marsRoverCuriosity orientation ].! !
 
 !MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 22:22:41'!
 test20MarsRoverMovesFowardRotatesAndContinuesCommandWhenAllAreValid
@@ -192,14 +198,20 @@ test20MarsRoverMovesFowardRotatesAndContinuesCommandWhenAllAreValid
 	
 	self assertAfter: marsRoverCuriosity receives: 'ffrff' thePositionEquals: expectedPosition andTheOrientationEquals: east.! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'ado 5/14/2023 22:46:08'!
+!MarsRoverTest methodsFor: 'tests' stamp: 'af 5/15/2023 13:40:57'!
 test21MarsRoverFollowsCommandsOnlyUntilLastValidSignal
 
-	| expectedPosition|
-	
-	expectedPosition := PositionOfMarsRover newPositionAtXCoordinate: -1  andYCoordinate: 1.
-	
-	self assertAfter: marsRoverCuriosity receives: 'flflxrb' thePositionEquals: expectedPosition andTheOrientationEquals: south.! !
+	| expectedPosition commands |
+	expectedPosition := PositionOfMarsRover newPositionAtXCoordinate: -1  andYCoordinate: 1.	commands := Command newWithSignals: 'flflxrrb'.
+
+	self 
+		should: [ marsRoverCuriosity recieveCommand: commands] 
+		raise: Error
+		withExceptionDo: [ :error | 
+			self assert: (MarsRover invalidSignalMessage) equals: error messageText.
+			self assert: expectedPosition equals: (marsRoverCuriosity position).
+			self assert: south equals: marsRoverCuriosity orientation .
+			 ].! !
 
 
 !classDefinition: #Command category: 'MarsRover'!
@@ -230,25 +242,24 @@ newWithSignals: aStringOfSignals
 
 !classDefinition: #MarsRover category: 'MarsRover'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'posicion orientacion'
+	instanceVariableNames: 'position orientation'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!MarsRover methodsFor: 'commands' stamp: 'ado 5/14/2023 19:38:05'!
+!MarsRover methodsFor: 'commands' stamp: 'af 5/15/2023 13:02:38'!
 followCommand: commandsToBeFollowed
 	^(commandsToBeFollowed isEmpty) 
-		ifTrue: [self haltCommands .] 
-		
+		ifTrue: [self .] 	
 		ifFalse: [self followThisCommand: (commandsToBeFollowed first) andContinueWith: (commandsToBeFollowed allButFirst) ].! !
 
 !MarsRover methodsFor: 'commands' stamp: 'af 5/12/2023 22:35:38'!
 followThisCommand: aSingleCommandToBeFollowed andContinueWith: commandsToBeFollowed
 	aSingleCommandToBeFollowed beDoneBy: self andContinueWithCommands: commandsToBeFollowed.! !
 
-!MarsRover methodsFor: 'commands' stamp: 'af 5/12/2023 22:31:10'!
+!MarsRover methodsFor: 'commands' stamp: 'af 5/15/2023 13:38:42'!
 haltCommands
-	^self.
+	^self error: (MarsRover invalidSignalMessage).
 ! !
 
 !MarsRover methodsFor: 'commands' stamp: 'af 5/12/2023 23:43:15'!
@@ -256,69 +267,69 @@ recieveCommand: aCommand
 	^self followCommand: (aCommand signals).! !
 
 
-!MarsRover methodsFor: 'moving' stamp: 'af 5/12/2023 23:49:04'!
+!MarsRover methodsFor: 'moving' stamp: 'af 5/15/2023 13:59:46'!
 moveBackwards
-	^orientacion moveBackwardsMarsRover: self.! !
+	^position  := orientation moveBackwardsMarsRover: self.! !
 
-!MarsRover methodsFor: 'moving' stamp: 'af 5/12/2023 23:48:28'!
+!MarsRover methodsFor: 'moving' stamp: 'af 5/15/2023 13:59:46'!
 moveFoward
-	^orientacion moveFowardMarsRover: self.! !
+	^position := orientation moveFowardMarsRover: self.! !
 
 
-!MarsRover methodsFor: 'initializing' stamp: 'af 5/12/2023 00:04:55'!
+!MarsRover methodsFor: 'initializing' stamp: 'af 5/15/2023 13:59:46'!
 initializeWith: aPosition andOrientation: anOrientation.
-	posicion  := aPosition.
-	orientacion  := anOrientation.! !
+	position  := aPosition.
+	orientation  := anOrientation.! !
 
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:51:12'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
 rotate90DegreesLeft
-	orientacion rotate90DegreesLeftMarsRover: self.! !
+	orientation rotate90DegreesLeftMarsRover: self.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:47:28'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
 rotate90DegreesLeftFromEast
-	orientacion := North new.! !
+	orientation := North new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:49:31'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
 rotate90DegreesLeftFromNorth
-	orientacion := West new.! !
+	orientation := West new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:48:31'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
 rotate90DegreesLeftFromSouth
-	orientacion := East new.! !
+	orientation := East new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:47:53'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
 rotate90DegreesLeftFromWest
-	orientacion := South new.! !
+	orientation := South new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:51:53'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
 rotate90DegreesRight
-	orientacion rotate90DegreesRightMarsRover: self.! !
+	orientation rotate90DegreesRightMarsRover: self.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:48:56'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
 rotate90DegreesRightFromEast
-	orientacion := South new.! !
+	orientation := South new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:49:41'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
 rotate90DegreesRightFromNorth
-	orientacion := East new.! !
+	orientation := East new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:50:01'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:47'!
 rotate90DegreesRightFromSouth
-	orientacion := West new.! !
+	orientation := West new.! !
 
-!MarsRover methodsFor: 'rotations' stamp: 'af 5/12/2023 14:50:28'!
+!MarsRover methodsFor: 'rotations' stamp: 'af 5/15/2023 13:59:46'!
 rotate90DegreesRightFromWest
-	orientacion := North new.! !
+	orientation := North new.! !
 
 
-!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/12/2023 15:03:06'!
+!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/15/2023 13:59:46'!
 orientation
-	^orientacion .! !
+	^orientation .! !
 
-!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/12/2023 15:16:22'!
+!MarsRover methodsFor: 'locationAndStatus' stamp: 'af 5/15/2023 13:58:59'!
 position
-	^posicion .! !
+	^position .! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -329,6 +340,11 @@ MarsRover class
 !MarsRover class methodsFor: 'nil' stamp: 'af 5/12/2023 00:04:17'!
 newAtPosition: aPosition andOrientation: anOrientation
 	^(self new) initializeWith: aPosition andOrientation: anOrientation.! !
+
+
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'af 5/15/2023 13:19:20'!
+invalidSignalMessage
+	^'An invalid signal was recieved, there are no instructions to be followed. Stoping future signals from the same command.'! !
 
 
 !classDefinition: #OrientationOfMarsRover category: 'MarsRover'!
@@ -545,21 +561,22 @@ initializeWithXCoordinate: anXcordinate andYCoordinate: anYcordinate.
 	posicionEjeX  := anXcordinate .
 	posicionEjeY  := anYcordinate .! !
 
-!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/12/2023 23:50:06'!
+!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/15/2023 13:52:22'!
 moveOneUnitEast
-	^posicionEjeX :=  posicionEjeX+1.! !
+	^PositionOfMarsRover newPositionAtXCoordinate: (posicionEjeX+1) andYCoordinate: posicionEjeY .! !
 
-!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/12/2023 23:50:54'!
+!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/15/2023 13:52:51'!
 moveOneUnitNorth
-	^posicionEjeY :=  posicionEjeY+1.! !
+	^PositionOfMarsRover newPositionAtXCoordinate: (posicionEjeX) andYCoordinate: (posicionEjeY+1).! !
 
-!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/12/2023 23:51:08'!
+!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/15/2023 13:53:07'!
 moveOneUnitSouth
-	^posicionEjeY :=  posicionEjeY-1.! !
 
-!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/12/2023 23:51:28'!
+	^PositionOfMarsRover newPositionAtXCoordinate: (posicionEjeX) andYCoordinate: (posicionEjeY-1).! !
+
+!PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/15/2023 13:53:17'!
 moveOneUnitWest
-	^posicionEjeX :=  posicionEjeX-1.! !
+	^PositionOfMarsRover newPositionAtXCoordinate: (posicionEjeX-1) andYCoordinate: (posicionEjeY).! !
 
 !PositionOfMarsRover methodsFor: 'as yet unclassified' stamp: 'af 5/11/2023 21:29:04'!
 position
