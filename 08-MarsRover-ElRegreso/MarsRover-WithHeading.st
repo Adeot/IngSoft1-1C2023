@@ -171,7 +171,7 @@ test11MarsRoverChangesInGeographicWindowTracingPositioning
 	
 ! !
 
-!LogsTest methodsFor: 'as yet unclassified' stamp: 'AF 6/3/2023 15:29:10'!
+!LogsTest methodsFor: 'as yet unclassified' stamp: 'AF 6/4/2023 23:56:19'!
 test12MarsRoverChangesInGeographicWindowTracingRotating
 
 	
@@ -181,7 +181,7 @@ test12MarsRoverChangesInGeographicWindowTracingRotating
 
 	marsRoverCuriosity process: 'r'.
 
-	self assert: ('East') equals: (marsRoverCuriosityDirectionWindow show).
+	self assert: ('Apuntando al East') equals: (marsRoverCuriosityDirectionWindow show).
 
 	
 ! !
@@ -216,7 +216,7 @@ test14MarsRoverChangesInGeographicLogTracingPositioning
 	
 ! !
 
-!LogsTest methodsFor: 'as yet unclassified' stamp: 'AF 6/3/2023 15:05:27'!
+!LogsTest methodsFor: 'as yet unclassified' stamp: 'AF 6/4/2023 23:56:32'!
 test15MarsRoverManyChangesInGeographicWindowTracing
 
 	
@@ -225,7 +225,7 @@ test15MarsRoverManyChangesInGeographicWindowTracing
 	marsRoverCuriosityDirectionWindow := MarsRoverGeographicWindow forTracing: marsRoverCuriosity.
 
 	marsRoverCuriosity process: 'rrflb'.
-	self assert: (OrderedCollection with: -1@-1 with: 'East') equals: (marsRoverCuriosityDirectionWindow show) .
+	self assert: (OrderedCollection with: -1@-1 with: 'Apuntando al East') equals: (marsRoverCuriosityDirectionWindow show) .
 
 	
 ! !
@@ -925,13 +925,13 @@ show
 	((hasMovedHead not) and: [hasMovedPosition ]) ifTrue: [^self showPosition ].
 	((hasMovedHead not) and: [hasMovedPosition not]) ifTrue: [^self showNothing ].! !
 
-!MarsRoverGeographicWindow methodsFor: 'display' stamp: 'AF 6/3/2023 15:12:24'!
+!MarsRoverGeographicWindow methodsFor: 'display' stamp: 'AF 6/4/2023 23:55:20'!
 showBoth
-	^OrderedCollection with: position with: heading nameOfHeading.! !
+	^OrderedCollection with: position with: ('Apuntando al ', (heading nameOfHeading)).! !
 
-!MarsRoverGeographicWindow methodsFor: 'display' stamp: 'AF 6/3/2023 15:12:59'!
+!MarsRoverGeographicWindow methodsFor: 'display' stamp: 'AF 6/4/2023 23:55:42'!
 showHeading
-	^heading nameOfHeading.! !
+	^('Apuntando al ', (heading nameOfHeading)).! !
 
 !MarsRoverGeographicWindow methodsFor: 'display' stamp: 'AF 6/3/2023 15:28:21'!
 showNothing

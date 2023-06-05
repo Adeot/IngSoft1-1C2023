@@ -7238,3 +7238,153 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(3 June 2023 15:30:47) CuisUniversity-5799.image priorSource: 9493800!
+
+----STARTUP---- (4 June 2023 23:52:50) as C:\Users\fridm\OneDrive\Escritorio\cuisUniversity\windows64\CuisUniversity-5799.image!
+
+
+'asd', 'as'!
+!MarsRoverGeographicWindow methodsFor: 'display' stamp: 'AF 6/4/2023 23:55:20' prior: 50629555!
+showBoth
+	^OrderedCollection with: position with: ('Apuntando al ', (heading nameOfHeading)).! !
+!MarsRoverGeographicWindow methodsFor: 'display' stamp: 'AF 6/4/2023 23:55:42' prior: 50629564!
+showHeading
+	^('Apuntando al ', (heading nameOfHeading)).! !
+
+!testRun: #LogsTest #test00MarsRoverNoChangesInPosition stamp: 'AF 6/4/2023 23:55:54'!
+PASSED!
+
+!testRun: #LogsTest #test01MarsRoverChangesInPositionWindowTracing stamp: 'AF 6/4/2023 23:55:54'!
+PASSED!
+
+!testRun: #LogsTest #test02MarsRoverChangesInPositionLogTracing stamp: 'AF 6/4/2023 23:55:54'!
+PASSED!
+
+!testRun: #LogsTest #test03MarsRoverManyChangesInPositionWindowTracing stamp: 'AF 6/4/2023 23:55:54'!
+PASSED!
+
+!testRun: #LogsTest #test04MarsRoverManyChangesInPositionLogTracing stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test05MarsRoverNoChangesInHeadingLog stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test06MarsRoverChangesInHeadingWindowTracing stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test07MarsRoverChangesInHeadingLogTracing stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test08MarsRoverManyChangesInHeadingWindowTracing stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test09MarsRoverManyChangesInHeadingLogTracing stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test10MarsRoverNoChangesInGeographicLog stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test11MarsRoverChangesInGeographicWindowTracingPositioning stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test12MarsRoverChangesInGeographicWindowTracingRotating stamp: 'AF 6/4/2023 23:55:55'!
+FAILURE!
+
+!testRun: #LogsTest #test13MarsRoverChangesInGeographicLogTracingRotating stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test14MarsRoverChangesInGeographicLogTracingPositioning stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test15MarsRoverManyChangesInGeographicWindowTracing stamp: 'AF 6/4/2023 23:55:55'!
+FAILURE!
+
+!testRun: #LogsTest #test16MarsRoverManyChangesInGeographicLogTracing stamp: 'AF 6/4/2023 23:55:55'!
+PASSED!
+
+!testRun: #LogsTest #test12MarsRoverChangesInGeographicWindowTracingRotating stamp: 'AF 6/4/2023 23:56:00'!
+FAILURE!
+
+!testRun: #LogsTest #test12MarsRoverChangesInGeographicWindowTracingRotating stamp: 'AF 6/4/2023 23:56:00'!
+FAILURE!
+!LogsTest methodsFor: 'as yet unclassified' stamp: 'AF 6/4/2023 23:56:19' prior: 50629939!
+test12MarsRoverChangesInGeographicWindowTracingRotating
+
+	
+	| marsRoverCuriosityDirectionWindow |
+	marsRoverCuriosity := MarsRover at: 0@0 heading: MarsRoverHeadingNorth .
+	marsRoverCuriosityDirectionWindow := MarsRoverGeographicWindow forTracing: marsRoverCuriosity.
+
+	marsRoverCuriosity process: 'r'.
+
+	self assert: ('Apuntando al East') equals: (marsRoverCuriosityDirectionWindow show).
+
+	
+! !
+!LogsTest methodsFor: 'as yet unclassified' stamp: 'AF 6/4/2023 23:56:32' prior: 50629439!
+test15MarsRoverManyChangesInGeographicWindowTracing
+
+	
+	| marsRoverCuriosityDirectionWindow |
+	marsRoverCuriosity := MarsRover at: 0@0 heading: MarsRoverHeadingNorth .
+	marsRoverCuriosityDirectionWindow := MarsRoverGeographicWindow forTracing: marsRoverCuriosity.
+
+	marsRoverCuriosity process: 'rrflb'.
+	self assert: (OrderedCollection with: -1@-1 with: 'Apuntando al East') equals: (marsRoverCuriosityDirectionWindow show) .
+
+	
+! !
+
+!testRun: #LogsTest #test00MarsRoverNoChangesInPosition stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test01MarsRoverChangesInPositionWindowTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test02MarsRoverChangesInPositionLogTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test03MarsRoverManyChangesInPositionWindowTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test04MarsRoverManyChangesInPositionLogTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test05MarsRoverNoChangesInHeadingLog stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test06MarsRoverChangesInHeadingWindowTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test07MarsRoverChangesInHeadingLogTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test08MarsRoverManyChangesInHeadingWindowTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test09MarsRoverManyChangesInHeadingLogTracing stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test10MarsRoverNoChangesInGeographicLog stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test11MarsRoverChangesInGeographicWindowTracingPositioning stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test12MarsRoverChangesInGeographicWindowTracingRotating stamp: 'AF 6/4/2023 23:56:41'!
+PASSED!
+
+!testRun: #LogsTest #test13MarsRoverChangesInGeographicLogTracingRotating stamp: 'AF 6/4/2023 23:56:42'!
+PASSED!
+
+!testRun: #LogsTest #test14MarsRoverChangesInGeographicLogTracingPositioning stamp: 'AF 6/4/2023 23:56:42'!
+PASSED!
+
+!testRun: #LogsTest #test15MarsRoverManyChangesInGeographicWindowTracing stamp: 'AF 6/4/2023 23:56:42'!
+PASSED!
+
+!testRun: #LogsTest #test16MarsRoverManyChangesInGeographicLogTracing stamp: 'AF 6/4/2023 23:56:42'!
+PASSED!
+
+----SNAPSHOT----(4 June 2023 23:57:03) CuisUniversity-5799.image priorSource: 9547537!
+
+----SNAPSHOT----(4 June 2023 23:59:27) CuisUniversity-5799.image priorSource: 9553122!
