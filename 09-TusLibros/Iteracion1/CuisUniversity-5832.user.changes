@@ -1,0 +1,698 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (8 June 2023 16:12:21) as C:\Users\agusd\Downloads\windows64\CuisUniversity-5832.image!
+
+
+----End fileIn of C:\Users\agusd\Downloads\windows64\TusLibros.st----!
+!Editorial methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:18:01' prior: 50624483 overrides: 16920235!
+initialize
+
+	isbmList := Set new.! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:20:53'!
+FAILURE!
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:25:12' prior: 50624455!
+addToCart: aPileOfBooks 
+	
+	booksInCart add: aPileOfBooks.
+	^0.! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:25:21' prior: 50624413!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	carrito := Carrito createCart.
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: bookISBM.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: addPileOfBooks value equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+!Carrito class methodsFor: 'initialization' stamp: 'ado 6/8/2023 16:29:00'!
+createCartFrom: aPublisher
+
+	^Carrito new initializeFrom: aPublisher.! !
+
+!classDefinition: #Carrito category: 'TusLibros' stamp: 'ado 6/8/2023 16:29:38'!
+Object subclass: #Carrito
+	instanceVariableNames: 'booksInCart publisher'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Carrito methodsFor: 'accessing' stamp: 'ado 6/8/2023 16:29:36'!
+initializeFrom: aPublisher
+
+	booksInCart := OrderedCollection new.
+	publisher := aPublisher! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:31:11' prior: 50624521!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: addPileOfBooks value equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:31:12'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:31:20' prior: 50624575!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: addPileOfBooks value equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+!Editorial methodsFor: 'adding' stamp: 'ado 6/8/2023 16:36:32'!
+hasISBM: bookISBM 
+
+	(isbmList scanFor: bookISBM) ifNotZero: [^true].
+	^false! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:40:41' prior: 50624515!
+addToCart: aPileOfBooks 
+	
+	(publisher hasISBM: (aPileOfBooks x)) ifTrue:[
+		booksInCart add: aPileOfBooks.
+		^0.
+		]
+	^1! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:40:55'!
+ERROR!
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:42:14' prior: 50624658!
+addToCart: aPileOfBooks 
+	
+	(publisher hasISBM: (aPileOfBooks x)) ifTrue:[
+		booksInCart add: aPileOfBooks.
+		^0.
+		]
+	^1.! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:42:21'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:43:22' prior: 50624599!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:43:23'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:43:46' prior: 50624679!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (carrito addToCart: pileOfEqualBooks) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:43:50'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:44:17' prior: 50624703!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:44:22' prior: 50624668!
+addToCart: aPileOfBooks 
+	
+	(publisher hasISBM: (aPileOfBooks x)) ifTrue:[
+		booksInCart add: aPileOfBooks.
+		^0.
+		].
+	^1.! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:44:26'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:45:57'!
+FAILURE!
+
+1@2 x!
+
+(1@2) x!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:48:57' prior: 50624728!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:48:58'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:48:58'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:48:58'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:48:58'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:48:58'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:49:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:49:13'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:49:13'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:37'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:49:37'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:49:37'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:49:37'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:37'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:50:53' prior: 50624386!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:50:59'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:50:59'!
+ERROR!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:26'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:26'!
+ERROR!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:59'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:59'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:52:26' prior: 50624396!
+test03CarritoListaSusLibrosAlAgregarUnaPila
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	carrito addToCart: pileOfEqualBooks.
+	
+	self assert: (carrito listCart) equals: collectionOfBooks.
+	
+	! !
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:53:04' prior: 50624763!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:53:06'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:53:53' prior: 50624946!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:53:58'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:12'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:54:18' prior: 50624970!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 123.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:19'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:54:29' prior: 50624994!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+!Editorial methodsFor: 'adding' stamp: 'ado 6/8/2023 16:57:08' prior: 50624636!
+hasISBM: bookISBM 
+
+	(isbmList includes: bookISBM) ifNotZero: [^true].
+	^false! !
+!Editorial methodsFor: 'adding' stamp: 'ado 6/8/2023 16:57:18' prior: 50625049!
+hasISBM: bookISBM 
+
+	(isbmList includes: bookISBM) ifTrue: [^true].
+	^false! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:57:22'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:27' prior: 50625015!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:57:28'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:57:28'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:57:28'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:57:28'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:57:28'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:44' prior: 50624834!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 456.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:52' prior: 50624909!
+test03CarritoListaSusLibrosAlAgregarUnaPila
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 123.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	carrito addToCart: pileOfEqualBooks.
+	
+	self assert: (carrito listCart) equals: collectionOfBooks.
+	
+	! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:57' prior: 50625099!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:58:01' prior: 50625133!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 123.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+----SNAPSHOT----(8 June 2023 16:58:32) CuisUniversity-5832.image priorSource: 9366758!
