@@ -1,0 +1,1794 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (8 June 2023 16:12:21) as C:\Users\agusd\Downloads\windows64\CuisUniversity-5832.image!
+
+
+----End fileIn of C:\Users\agusd\Downloads\windows64\TusLibros.st----!
+!Editorial methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:18:01' prior: 50624483 overrides: 16920235!
+initialize
+
+	isbmList := Set new.! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:20:53'!
+FAILURE!
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:25:12' prior: 50624455!
+addToCart: aPileOfBooks 
+	
+	booksInCart add: aPileOfBooks.
+	^0.! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:25:21' prior: 50624413!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	carrito := Carrito createCart.
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: bookISBM.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: addPileOfBooks value equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:25:22'!
+PASSED!
+!Carrito class methodsFor: 'initialization' stamp: 'ado 6/8/2023 16:29:00'!
+createCartFrom: aPublisher
+
+	^Carrito new initializeFrom: aPublisher.! !
+
+!classDefinition: #Carrito category: 'TusLibros' stamp: 'ado 6/8/2023 16:29:38'!
+Object subclass: #Carrito
+	instanceVariableNames: 'booksInCart publisher'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Carrito methodsFor: 'accessing' stamp: 'ado 6/8/2023 16:29:36'!
+initializeFrom: aPublisher
+
+	booksInCart := OrderedCollection new.
+	publisher := aPublisher! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:31:11' prior: 50624521!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: addPileOfBooks value equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:31:12'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:31:20' prior: 50624575!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: addPileOfBooks value equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:31:22'!
+PASSED!
+!Editorial methodsFor: 'adding' stamp: 'ado 6/8/2023 16:36:32'!
+hasISBM: bookISBM 
+
+	(isbmList scanFor: bookISBM) ifNotZero: [^true].
+	^false! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:37:49'!
+PASSED!
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:40:41' prior: 50624515!
+addToCart: aPileOfBooks 
+	
+	(publisher hasISBM: (aPileOfBooks x)) ifTrue:[
+		booksInCart add: aPileOfBooks.
+		^0.
+		]
+	^1! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:40:55'!
+ERROR!
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:42:14' prior: 50624658!
+addToCart: aPileOfBooks 
+	
+	(publisher hasISBM: (aPileOfBooks x)) ifTrue:[
+		booksInCart add: aPileOfBooks.
+		^0.
+		]
+	^1.! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:42:21'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:43:22' prior: 50624599!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:43:23'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:43:46' prior: 50624679!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (carrito addToCart: pileOfEqualBooks) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:43:50'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:44:17' prior: 50624703!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+!Carrito methodsFor: 'adding' stamp: 'ado 6/8/2023 16:44:22' prior: 50624668!
+addToCart: aPileOfBooks 
+	
+	(publisher hasISBM: (aPileOfBooks x)) ifTrue:[
+		booksInCart add: aPileOfBooks.
+		^0.
+		].
+	^1.! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:44:26'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:45:57'!
+FAILURE!
+
+1@2 x!
+
+(1@2) x!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:48:57' prior: 50624728!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:48:58'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:48:58'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:48:58'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:48:58'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:48:58'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:49:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:49:13'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:49:13'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:13'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:37'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:49:37'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:49:37'!
+ERROR!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:49:37'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:49:37'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:50:53' prior: 50624386!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:50:59'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:50:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:50:59'!
+ERROR!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:26'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:51:26'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:26'!
+ERROR!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:59'!
+ERROR!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:51:59'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:51:59'!
+ERROR!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:52:26' prior: 50624396!
+test03CarritoListaSusLibrosAlAgregarUnaPila
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	carrito addToCart: pileOfEqualBooks.
+	
+	self assert: (carrito listCart) equals: collectionOfBooks.
+	
+	! !
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:52:33'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:53:04' prior: 50624763!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:53:06'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:53:53' prior: 50624946!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:53:58'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:12'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:54:18' prior: 50624970!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 123.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:19'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:54:29' prior: 50624994!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 0.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:54:30'!
+PASSED!
+!Editorial methodsFor: 'adding' stamp: 'ado 6/8/2023 16:57:08' prior: 50624636!
+hasISBM: bookISBM 
+
+	(isbmList includes: bookISBM) ifNotZero: [^true].
+	^false! !
+!Editorial methodsFor: 'adding' stamp: 'ado 6/8/2023 16:57:18' prior: 50625049!
+hasISBM: bookISBM 
+
+	(isbmList includes: bookISBM) ifTrue: [^true].
+	^false! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:57:22'!
+FAILURE!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:27' prior: 50625015!
+test04CarritoEnvia1SiElISBNNoEsDeLaEditorial
+	
+	| bookISBM bookQuantity carrito pileOfEqualBooks addPileOfBooks editorial |
+	
+	
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	
+	addPileOfBooks := [carrito addToCart: pileOfEqualBooks].
+	
+	self assert: (addPileOfBooks value) equals: 1.
+	
+	! !
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:57:28'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:57:28'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:57:28'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:57:28'!
+FAILURE!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:57:28'!
+PASSED!
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:44' prior: 50624834!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 456.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:52' prior: 50624909!
+test03CarritoListaSusLibrosAlAgregarUnaPila
+	
+	| bookISBM bookQuantity carrito collectionOfBooks pileOfEqualBooks editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 123.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	pileOfEqualBooks := (bookISBM@bookQuantity).
+	
+	collectionOfBooks := OrderedCollection new.
+	collectionOfBooks add: pileOfEqualBooks.
+	
+	carrito addToCart: pileOfEqualBooks.
+	
+	self assert: (carrito listCart) equals: collectionOfBooks.
+	
+	! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:57:57' prior: 50625099!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 456.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+!TusLibrosTest methodsFor: 'as yet unclassified' stamp: 'ado 6/8/2023 16:58:01' prior: 50625133!
+test02CarritoDejaDeEstarVacioAlAgregarLibro
+	
+	| bookISBM bookQuantity carrito editorial |
+	
+	editorial := Editorial newEditorial.
+	editorial addISBM: 123.
+	
+	carrito := Carrito createCartFrom: editorial.
+	bookISBM := 123.
+	bookQuantity := 3.
+	carrito addToCart: (bookISBM@bookQuantity).
+	
+	self deny: carrito isEmpty
+	
+	
+	! !
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test01CarritoNuevoEstaVacio stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test02CarritoDejaDeEstarVacioAlAgregarLibro stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test03CarritoListaSusLibrosAlAgregarUnaPila stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+!testRun: #TusLibrosTest #test04CarritoEnvia1SiElISBNNoEsDeLaEditorial stamp: 'ado 6/8/2023 16:58:02'!
+PASSED!
+
+----SNAPSHOT----(8 June 2023 16:58:32) CuisUniversity-5832.image priorSource: 9366758!
+
+----QUIT----(8 June 2023 17:00:55) CuisUniversity-5832.image priorSource: 9392834!
+
+----STARTUP---- (11 June 2023 12:23:52) as C:\Users\agusd\Downloads\windows64\CuisUniversity-5832.image!
+
+
+!classRemoval: #Editorial stamp: 'ado 6/11/2023 12:35:05'!
+Object subclass: #Editorial
+	instanceVariableNames: 'isbmList'
+	classVariableNames: 'ISBMList'
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Carrito stamp: 'ado 6/11/2023 12:35:05'!
+Object subclass: #Carrito
+	instanceVariableNames: 'booksInCart publisher'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibrosTest stamp: 'ado 6/11/2023 12:35:06'!
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of C:\Users\agusd\Downloads\windows64\TusLibros.st----!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/11/2023 12:36:30'!
+PASSED!
+!PriceList class methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 00:25:25' prior: 50625517!
+priceOf: aProduct 
+
+	^dictonaryOfPrices at: aProduct.! !
+!PriceList class methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 00:25:35' prior: 50625507 overrides: 16901525!
+at: aProduct put: aPrice 
+
+	dictonaryOfPrices at: aProduct put: aPrice.! !
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 00:41:20' prior: 50625302!
+test10CanCheckOutWithJustOneProductInCart
+
+	| cart cashier priceList card |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	priceList := PriceList new.
+	PriceList at: 'validBook' put: 10.
+	
+	self 
+		assert: 10 equals: (cashier checkOut: cart payingWith: card).
+! !
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 00:41:44' prior: 50625315!
+test11CanCheckOutWithManyProductsInCart
+
+	| cart cashier card |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	PriceList at: self itemSellByTheStore put: 10.
+	self assert: 30 equals: (cashier checkOut: cart payingWith: card).
+	! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 00:43:44'!
+checkOut: aCart payingWith: aCard on: aDate
+^(aCart isEmpty) ifTrue: [self error: self emptyCartCheckOutErrorMessage .] 
+			    ifFalse: [self generateTicketFor: aCart ]
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 00:56:08'!
+send: aCard toBeVerifiedBy: aMerchantProcessor andGenerateTicketFor: aCart on: aDate
+	^aCart totalPriceOfAllProducts.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 00:58:14' prior: 50625598!
+checkOut: aCart payingWith: aCard on: aDate
+
+	(aCart isEmpty) ifTrue: [^self error: self emptyCartCheckOutErrorMessage .]. 
+
+	^ self generateTicketFor: aCart.
+! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 00:58:31' prior: 50625451!
+checkOut: aCart payingWith: aCard
+
+	(aCart isEmpty) ifTrue: [^self error: self emptyCartCheckOutErrorMessage .]. 
+
+		^ self generateTicketFor: aCart.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 00:58:34'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 01:01:14'!
+send: aCard toBeVerifiedBy: aMercharntProcessor generateTicketFor: aCart
+	^aCart totalPriceOfAllProducts.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 01:01:15'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 01:01:27' prior: 50625664!
+send: aCard toBeVerifiedBy: aMerchantProcessor generateTicketFor: aCart
+	^aCart totalPriceOfAllProducts.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 01:01:38'!
+PASSED!
+
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessor category: 'TusLibros' stamp: 'ado 6/12/2023 01:06:05'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessor methodsFor: 'nil' stamp: 'ado 6/12/2023 01:08:32'!
+verify: aCard on: aDate
+
+	^ true.! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 01:09:35'!
+checkOut: aCart payingWith: aCard on: aDate processedBy: aMerchantProcessor
+
+	(aCart isEmpty) ifTrue: [^self error: self emptyCartCheckOutErrorMessage .]. 
+
+	^ self generateTicketFor: aCart.
+! !
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 01:11:11'!
+verify: aCard isValidOn: aDate
+
+	^ true.! !
+
+!methodRemoval: MerchantProcessor #verify:on: stamp: 'ado 6/12/2023 01:11:15'!
+verify: aCard on: aDate
+
+	^ true.!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 01:13:44'!
+invalidCardErrorMessage
+
+^'It is not possible to checkout an empty cart'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 01:13:44'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 01:13:45'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 01:13:45'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 01:13:45'!
+PASSED!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 01:13:53' prior: 50625779!
+invalidCardErrorMessage
+
+^'It is not possible to checkout an invalid card'! !
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 01:14:14' prior: 50625762!
+checkOut: aCart payingWith: aCard on: aDate processedBy: aMerchantProcessor
+
+	(aCart isEmpty) ifTrue: [^self error: self emptyCartCheckOutErrorMessage .]. 
+	(aMerchantProcessor verify: aCard isValidOn: aDate) ifFalse: [^self error: self invalidCardErrorMessage.]. 
+
+	^ self generateTicketFor: aCart.
+! !
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 01:16:58' prior: 50625571!
+test10CanCheckOutWithJustOneProductInCart
+
+	| cart cashier card |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	PriceList at: 'validBook' put: 10.
+	
+	self 
+		assert: 10 equals: (cashier checkOut: cart payingWith: card).
+! !
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 01:17:02'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 01:17:37' prior: 50625584!
+test11CanCheckOutWithManyProductsInCart
+
+	| cart cashier card |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	PriceList at: (self itemSellByTheStore) put: 10.
+	self assert: 30 equals: (cashier checkOut: cart payingWith: card).
+	! !
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 01:17:46' prior: 50625838!
+test10CanCheckOutWithJustOneProductInCart
+
+	| cart cashier card |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	PriceList at: (self itemSellByTheStore) put: 10.
+	
+	self 
+		assert: 10 equals: (cashier checkOut: cart payingWith: card).
+! !
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 01:20:12' prior: 50625902!
+test10CanCheckOutWithJustOneProductInCart
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	date := 10.
+	PriceList at: (self itemSellByTheStore) put: 10.
+	merchantProcessor := MerchantProcessor new.
+
+	
+	self 
+		assert: 10 equals: (cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor).
+! !
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 01:20:28'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 01:20:38' prior: 50625914!
+test10CanCheckOutWithJustOneProductInCart
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	date := 10.
+	PriceList at: (self itemSellByTheStore) put: 10.
+	merchantProcessor := MerchantProcessor new.
+
+	self 
+		assert: 10 equals: (cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor).
+! !
+
+----SNAPSHOT----(12 June 2023 01:21:08) CuisUniversity-5832.image priorSource: 9392922!
+
+----QUIT----(12 June 2023 01:22:05) CuisUniversity-5832.image priorSource: 9418660!
+
+----STARTUP---- (12 June 2023 16:06:12) as C:\Users\agusd\Downloads\windows64\CuisUniversity-5832.image!
+
+
+!classRemoval: #PriceList stamp: 'ado 6/12/2023 16:06:18'!
+Object subclass: #PriceList
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #MerchantProcessor stamp: 'ado 6/12/2023 16:06:18'!
+Object subclass: #MerchantProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'ado 6/12/2023 16:06:18'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'ado 6/12/2023 16:06:19'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Card stamp: 'ado 6/12/2023 16:06:19'!
+Object subclass: #Card
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'ado 6/12/2023 16:06:19'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----QUIT----(12 June 2023 16:06:25) CuisUniversity-5832.image priorSource: 9418749!
+
+----STARTUP---- (12 June 2023 16:06:33) as C:\Users\agusd\Downloads\windows64\CuisUniversity-5832.image!
+
+
+----End fileIn of C:\Users\agusd\Downloads\windows64\TusLibros.st----!
+!CartTest methodsFor: 'support' stamp: 'ado 6/12/2023 16:15:13'!
+createCard
+	| aDate aYear |
+	aYear := GregorianYear createYear: 2023.
+	aDate := GregorianMonthOfYear aprilOf: aYear.
+	^Card with: 1111222233334444 expiringOn: aDate securedWith: 123. ! !
+!CartTest methodsFor: 'support' stamp: 'ado 6/12/2023 16:16:17'!
+createAYear: aYearNumber
+
+	^ GregorianYear createYear: aYearNumber.! !
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:18:22' prior: 50626162!
+test12CantCheckOutWithExpiredCard
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := Card new.
+	cart add: self itemSellByTheStore.
+	merchantProcessor := MerchantProcessor new.
+	date := GregorianMonthOfYear juneOf: (self createAYear: 2023).
+	
+	self 
+		should: [(cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor)]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = merchantProcessor invalidCardErrorMessage. ]
+	! !
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:18:55' prior: 50626147!
+test11CanCheckOutWithManyProductsInCart
+
+	| cart cashier card |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := self createCard. 
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	PriceList at: (self itemSellByTheStore) put: 10.
+	self assert: 30 equals: (cashier checkOut: cart payingWith: card).
+	! !
+
+!methodRemoval: Cashier class #toCheckout:charging:on:registeringOn: stamp: 'ado 6/12/2023 16:19:36'!
+toCheckout: aCart charging: aCreditCard on: aDate registeringOn: aSalesBook
+	
+	"self assertIsNotEmpty: aCart.
+	self assertIsNotExpired: aCreditCard on: aDate.
+	
+	^self new initializeToCheckout: aCart charging: aCreditCard registeringOn: aSalesBook
+	"!
+
+!methodRemoval: Cashier #checkOut:payingWith:on: stamp: 'ado 6/12/2023 16:19:53'!
+checkOut: aCart payingWith: aCard on: aDate
+
+	(aCart isEmpty) ifTrue: [^self error: self emptyCartCheckOutErrorMessage .]. 
+
+	^ self generateTicketFor: aCart.
+!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:20:02' prior: 50626485!
+test12CantCheckOutWithExpiredCard
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := self createCard. 
+	cart add: self itemSellByTheStore.
+	merchantProcessor := MerchantProcessor new.
+	date := GregorianMonthOfYear juneOf: (self createAYear: 2023).
+	
+	self 
+		should: [(cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor)]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = merchantProcessor invalidCardErrorMessage. ]
+	! !
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:20:11'!
+ERROR!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 16:21:51'!
+invalidCardErrorMessage
+
+^'It is not possible to checkout an invalid card'! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:21:51'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:21:52'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:21:52'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:21:52'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:21:52'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:21:52'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:21:52'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:21:52'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:21:52'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:21:52'!
+FAILURE!
+
+!methodRemoval: Cashier #invalidCardErrorMessage stamp: 'ado 6/12/2023 16:22:10'!
+invalidCardErrorMessage
+
+^'It is not possible to checkout an invalid card'!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:22:19'!
+FAILURE!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 16:23:29' prior: 50626429!
+verify: aCard isValidOn: aDate
+
+	^ (aDate < aCard expiringDate).! !
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:23:35'!
+FAILURE!
+!Cashier methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 16:24:35' prior: 50626359!
+checkOut: aCart payingWith: aCard on: aDate processedBy: aMerchantProcessor
+
+	(aCart isEmpty) ifTrue: [^self error: self emptyCartCheckOutErrorMessage .]. 
+	(aMerchantProcessor verify: aCard isValidOn: aDate) ifFalse: [^self error: aMerchantProcessor invalidCardErrorMessage.]. 
+
+	^ self generateTicketFor: aCart.
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:25:10'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:25:10'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:25:10'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:27:53' prior: 50626505!
+test11CanCheckOutWithManyProductsInCart
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := self createCard. 
+	
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	
+	merchantProcessor := MerchantProcessor new.
+	date := GregorianMonthOfYear juneOf: (self createAYear: 2023).
+	PriceList at: (self itemSellByTheStore) put: 10.
+	
+	self assert: 30 equals: (cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor).
+	! !
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:27:58'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:28:31' prior: 50626676!
+test11CanCheckOutWithManyProductsInCart
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := self createCard. 
+	
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	
+	merchantProcessor := MerchantProcessor new.
+	date := GregorianMonthOfYear juneOf: (self createAYear: 2019).
+	PriceList at: (self itemSellByTheStore) put: 10.
+	
+	self assert: 30 equals: (cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor).
+	! !
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:28:56'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:28:56'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:28:57'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:30:59' prior: 50626699!
+test11CanCheckOutWithManyProductsInCart
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := self createCard. 
+	
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	cart add: self itemSellByTheStore.
+	PriceList at: (self itemSellByTheStore) put: 10.
+	
+	merchantProcessor := MerchantProcessor new.
+	date := GregorianMonthOfYear juneOf: (self createAYear: 2019).
+	
+	self assert: 30 equals: (cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor).
+	! !
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:31:00'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:31:01'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:31:01'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:31:01'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:31:01'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:31:01'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:31:01'!
+ERROR!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:31:08'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:31:08'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:31:08'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:31:09'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:31:09'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:31:09'!
+ERROR!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 16:31:37' prior: 50626613!
+verify: aCard isValidOn: aDate
+
+	^ (aDate < (aCard expiringDate)).! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:31:56'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:31:59'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:32:01'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:32:03'!
+ERROR!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:32:03'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:32:39' prior: 50626131!
+test10CanCheckOutWithJustOneProductInCart
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := self createCard. 
+	cart add: self itemSellByTheStore.
+	date := 10.
+	PriceList at: (self itemSellByTheStore) put: 10.
+	merchantProcessor := MerchantProcessor new.
+
+	self 
+		assert: 10 equals: (cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor).
+! !
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:32:45'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:32:45'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:32:45'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:33:47'!
+ERROR!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:33:47'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:33:47'!
+ERROR!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:34:20'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'ado 6/12/2023 16:34:53' prior: 50626895!
+test10CanCheckOutWithJustOneProductInCart
+
+	| cart cashier card date merchantProcessor |
+	
+	cart := self createCart.
+	cashier := Cashier new.
+	card := self createCard. 
+	cart add: self itemSellByTheStore.
+	date := GregorianMonthOfYear juneOf: (self createAYear: 2019).
+	PriceList at: (self itemSellByTheStore) put: 10.
+	merchantProcessor := MerchantProcessor new.
+
+	self 
+		assert: 10 equals: (cashier checkOut: cart payingWith: card on: date processedBy: merchantProcessor).
+! !
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:34:55'!
+PASSED!
+!MerchantProcessor methodsFor: 'as yet unclassified' stamp: 'ado 6/12/2023 16:35:14' prior: 50626874!
+verify: aCard isValidOn: aDate
+
+	^ (aDate < aCard expiringDate).! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'ado 6/12/2023 16:35:18'!
+PASSED!
+
+!testRun: #CartTest #test09CantCheckOutEmptyCart stamp: 'ado 6/12/2023 16:35:19'!
+PASSED!
+
+!testRun: #CartTest #test10CanCheckOutWithJustOneProductInCart stamp: 'ado 6/12/2023 16:35:19'!
+PASSED!
+
+!testRun: #CartTest #test11CanCheckOutWithManyProductsInCart stamp: 'ado 6/12/2023 16:35:19'!
+PASSED!
+
+!testRun: #CartTest #test12CantCheckOutWithExpiredCard stamp: 'ado 6/12/2023 16:35:19'!
+PASSED!
+
+----QUIT----(12 June 2023 16:37:03) CuisUniversity-5832.image priorSource: 9420056!
